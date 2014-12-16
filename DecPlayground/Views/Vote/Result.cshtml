@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DecPlayground.Models.VoteResult>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    var pieChartUrl = '@Url.Action("PieChart", "Vote")'
+</script>
+<script src="~/Scripts/app/GoogleChart.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Answer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDateTime)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Answer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDateTime)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

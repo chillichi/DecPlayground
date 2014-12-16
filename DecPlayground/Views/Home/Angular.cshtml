@@ -1,0 +1,58 @@
+﻿<div ng-controller="TaskCtrl">
+    <article class="jumbotron" ng-app="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <h2>Getting started</h2>
+                    <input ng-model="newTask" placeholder="Add the new task here" />
+                    <a class="btn btn-default" ng-click="addTask()">create</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <h2>List</h2>
+                    <table>
+                        <tr>
+                            <th style="width: 500px;" ng:click="changeSorting('CreatedDateTime')">Created On</th>
+                            <th style="width: 100px;" ng:click="changeSorting('Id')">ID</th>
+
+                            <th style="width: 300px;" ng:click="changeSorting('Desc')">Description</th>
+                            <th style="width: 50px;"></th>
+                            <th style="width: 50px;"></th>
+                        </tr>
+
+                        <tr ng-show="task.length">
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <input ng-model="query" type="text" placeholder="Filter by" class="te" autofocus>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat="t in task |  filter:query |orderBy:sort.column:sort.descending">
+
+                            <td>
+                                <span>{{t.CreatedDateTime| date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                            </td>
+                            <td>{{t.Id}}</td>
+                            <td>
+                                <span><input ng-model="t.Desc" required /></span>
+
+                            </td>
+                            <td>
+
+                                <a class="btn btn-default" ng-click="updateTask(t)">update</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" ng-click="deleteTask(t)">delete</a>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </article>
+</div>

@@ -1,0 +1,42 @@
+﻿@model DecPlayground.Models.VoteResult
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                @Html.ValidationSummary(true)
+                <p>Just a simple voting program, fill the email then said yes or no</p>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Email</label>
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" ,@placeholder="Enter email address here" })
+                            @Html.ValidationMessageFor(model => model.Email, null,new { @style = "color:Red" })
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Answer</label>
+                            @Html.RadioButtonFor(model => model.Answer, true, new { id = "Answer_True" }) True
+                            @Html.RadioButtonFor(model => model.Answer, false, new { id = "Answer_False" }) False
+                            <br>
+                            @Html.ValidationMessageFor(model => model.Answer, null,new { @style = "color:Red" })
+                        </div>
+                    </div>
+                  
+                    <br>
+
+   
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Vote" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
